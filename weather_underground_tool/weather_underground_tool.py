@@ -86,7 +86,7 @@ class WU(object):
         else:
             query = urllib.request.urlopen(url)
 
-        result = json.loads(query.read())
+        result = json.loads(str(query.read()))
         logger.log(1,
                    'Result:\n%s\n\n',
                    json.dumps(
