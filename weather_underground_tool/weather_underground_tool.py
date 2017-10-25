@@ -87,10 +87,11 @@ class WU(object):
             query = urllib.request.urlopen(url)
 
         data = query.read()
+        data_str = str(data).strip()
         try:
-            result = json.loads(data)
+            result = json.loads(data, encoding="UTF-8")
         except TypeError:
-            result = json.loads(str(data))
+            result = json.loads(data_str, encoding="UTF-8")
 
         logger.log(1,
                    'Result:\n%s\n\n',
