@@ -86,7 +86,12 @@ class WU(object):
         else:
             query = urllib.request.urlopen(url)
 
-        result = json.loads(str(query.read()))
+        data = query.read()
+        try:
+            result = json.loads(data)
+        except TypeError:
+            result = json.loads(str(data))
+
         logger.log(1,
                    'Result:\n%s\n\n',
                    json.dumps(

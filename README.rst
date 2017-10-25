@@ -19,6 +19,13 @@ Features
 * Queries the Weather Underground API.
 * Customizable template string for output formatting.
 
+Running
+-------
+
+Install the package with python setup.py install.
+
+Run the tool with weather_underground_tool.
+
 Credits
 ---------
 
