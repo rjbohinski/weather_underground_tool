@@ -8,6 +8,8 @@ from __future__ import division
 from __future__ import absolute_import
 from __future__ import print_function
 
+import pytest
+
 from weather_underground_tool.weather_underground_tool import WU
 
 
@@ -30,6 +32,8 @@ def load_key(file_name=DEFAULT_FILE_NAME):
         raise IOError()
     return key
 
+
+@pytest.mark.key
 def test_api():
     """Test the API call."""
     api = WU(load_key())
@@ -38,6 +42,15 @@ def test_api():
         'Philadelphia, PA'
 
 
+def test_api_bad_key():
+    """Test the API call with a bad key."""
+    api = WU('0')
+    json = api.call_api(['conditions'], 'PA/Philadelphia')
+    assert json['response']['error']['type'] == \
+        'keynotfound'
+
+
+@pytest.mark.key
 def test_template():
     """Test the template function."""
     api = WU(load_key())

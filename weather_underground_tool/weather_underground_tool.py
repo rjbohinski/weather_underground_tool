@@ -139,7 +139,6 @@ class WU(object):
         json_ok = False
 
         try:
-            errors = json_data['response']['error']
             logger.error('Weather Underground API error: [%s] "%s" ',
                          json_data['response']['error']['type'],
                          json_data['response']['error']['description'])
